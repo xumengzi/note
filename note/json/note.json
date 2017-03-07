@@ -1,0 +1,28 @@
+var nolist = {
+	noteList:[
+		{
+			title: "day1",
+			content: "Try to create a new note!",
+			timeStamp: 1487511417459,
+			background: "#cdfbcd"
+		},
+		{
+			title: "day2",
+			content: "VueJs is a javascript framework!",
+			timeStamp: 1488715557459,
+			background: "#fcc"
+		},
+		{
+			title: "day3",
+			content: "it is time to study VueJs!",
+			timeStamp: 1488723517459,
+			background: "#eee4c9"
+		},
+		{
+			title: "day4",
+			content: "Try it",
+			timeStamp: 1488721017459,
+			background: "#ffa"
+		}
+	]
+}

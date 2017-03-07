@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue-note</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="description"  content="HTML examples">
+		<meta name="keywords"  content="HTML,CSS,JavaScript,blog">
+		<meta name="author"  content="xumeng">
+		<link rel="shortcut icon" type="image/x-icon" href="http://xumengzi.top/xu_icon_40.ico" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/note.css">
+	</head>
+	<body>
+		<div id="myNote">
+			<h2>{{message}}</h2>
+			<h4>{{tips}}</h4>
+			<ul class="notes">
+	            <li v-for="item in noteList">
+	                <div v-bind:style="{background: item.background}">
+	                    <span class="time">{{item.timeStamp | timeFormat}}</span>
+	                    <div class="title"><input maxlength="15" v-bind:value="item.title" type="" name=""></div>
+	                    <div class="content" contenteditable="true">{{item.content}}</div>
+	                </div>
+	                <span v-on:click="deleteNote(item)" class="deleteNote"></span>
+	            </li>
+            </ul>
+            <span v-on:click="showNote" class="addNew" v-bind:class="{addRotate: isRotate}"></span>
+            <div class="newNote" v-bind:style="{background: noteBgColor}"  v-bind:class="{showNote: isShow}">
+            	<div v-on:click="changeBgColor" class="customized">
+            		<span color="#cdfbcd" class="selected"></span><span color="#fcc"></span><span color="#eee4c9"></span><span color="#ffa"></span>
+            	</div>
+            	<div class="content">
+            		<input type="text" v-model="noteTitle" placeholder="这里是便签标题">
+            		<textarea placeholder="这里是便签内容" v-model="noteContent"></textarea>
+            		<span class="create" v-on:click="createNote">create</span>
+            	</div>
+            </div>
+		</div>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="json/note.json"></script>
+		<script type="text/javascript" src="js/note.js"></script>
+	</body>
+</html>
