@@ -40,7 +40,18 @@ var vm = new Vue({
 	methods: {
 		//展示便签列表
 		showList: function(){
-			this.noteList = nolist.noteList;
+			//如果本地有数据就读取本地，反则创建新的。
+			let note = localStorage.getItem("localNote");
+			if (note) {
+				this.noteList = JSON.parse(note);
+			}else{
+				this.noteList = [{
+								title: "day1",
+								content: "Try to create a new note!",
+								timeStamp: +new Date(),
+								background: "#cdfbcd"
+							}];
+			};
 			// var that = this;
 			// this.$http.get("json/note.json",{"id": 123}).then(function(res){
 			// 	console.log(res);
@@ -78,11 +89,20 @@ var vm = new Vue({
 			this.noteContent = '';
 			this.isShow = !this.isShow;
 			this.isRotate = !this.isRotate;
+			//保存本地
+			vm.saveNote();
 		},
 		//delete note
 		deleteNote: function(item){
 			let index = this.noteList.indexOf(item);
 			this.noteList.splice(index,1);
+			//保存本地
+			vm.saveNote();
+		},
+		saveNote: function(){
+			//保存数据到本地
+			let localNote = JSON.stringify(this.noteList);
+			localStorage.setItem("localNote",localNote);
 		}
 	}
 })
