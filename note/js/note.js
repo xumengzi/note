@@ -9,6 +9,7 @@ var vm = new Vue({
 		// 便签内容
 		noteTitle: '',
 		noteContent: '',
+		noteColor: '',
 		noteBgColor: ''
 	},
 	//初始化
@@ -49,6 +50,7 @@ var vm = new Vue({
 								title: "day1",
 								content: "Try to create a new note!",
 								timeStamp: +new Date(),
+								color: "#000",
 								background: "#cdfbcd"
 							}];
 			};
@@ -68,6 +70,13 @@ var vm = new Vue({
 			this.isRotate = !this.isRotate;
 		},
 		//改变便签的背景色
+		changeColor: function(event){
+			if (event.target.tagName == "SPAN") {
+				let bgColor = event.target.attributes[0].value;
+				this.noteColor = bgColor;
+			};
+		},
+		//改变便签的背景色
 		changeBgColor: function(event){
 			if (event.target.tagName == "SPAN") {
 				let bgColor = event.target.attributes[0].value;
@@ -82,27 +91,46 @@ var vm = new Vue({
 				title: this.noteTitle,
 				content: this.noteContent,
 				timeStamp: now,
+				color: this.noteColor,
 				background: this.noteBgColor
 			});
 			//清空，关闭创建便签的模板
 			this.noteTitle = '';
 			this.noteContent = '';
+			this.noteColor = '';
+			this.noteBgColor = '';
 			this.isShow = !this.isShow;
 			this.isRotate = !this.isRotate;
 			//保存本地
-			vm.saveNote();
+			this.saveLocal();
 		},
 		//delete note
 		deleteNote: function(item){
 			let index = this.noteList.indexOf(item);
 			this.noteList.splice(index,1);
 			//保存本地
-			vm.saveNote();
+			this.saveLocal();
 		},
-		saveNote: function(){
+		saveLocal: function(){
 			//保存数据到本地
 			let localNote = JSON.stringify(this.noteList);
 			localStorage.setItem("localNote",localNote);
+		},
+		saveNote: function(item,event){
+			let index = this.noteList.indexOf(item);
+			//获取标题和内容,文字以及背景色
+			let tit = event.target.attributes[0].value,
+			    con = event.target.attributes[1].value,
+			    color = event.target.attributes[2].value,
+			    bgcolor = event.target.attributes[3].value;
+			let obj = this.noteList[index];
+			obj.title = tit;
+			obj.content = con;
+			obj.timeStamp = +new Date();
+			obj.color = color;
+			obj.background = bgcolor;
+			//保存本地
+			this.saveLocal();
 		}
 	}
 })
