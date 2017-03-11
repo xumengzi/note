@@ -91,8 +91,18 @@ ul.notes li .deleteNote{
 	background-size:cover;
 	cursor: pointer;
 }
-ul.notes li:hover .deleteNote{
+ul.notes li:hover .deleteNote,ul.notes li:hover .saveNote{
 	display: block;
+}
+ul.notes li .saveNote{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+    display: none;
+	cursor: pointer;
 }
 ul.notes li .title{
 
@@ -102,13 +112,30 @@ ul.notes li .content{
     overflow: auto;
     outline: none;
 }
-
+ul.notes li .content textarea{
+    height: 100%;
+    resize: none;
+    outline: none;
+    border: none; 
+    box-shadow: none;
+    display: block;
+    width: 100%;
+    /* height: 28px; */
+    box-sizing: border-box;
+    background: inherit;
+    text-indent: 2px;
+    line-height: 28px;
+    font-family: consolas;
+    font-weight: 700;
+    color: inherit;
+    /* margin: 10px 0; */
+}
 
 #myNote .addNew{
     width: 30px;
     height: 30px;
     position: fixed;
-    top: 7px;
+    top: 4px;
     right: 10px;
     border-radius: 50%;
     display: inline-block;
@@ -145,7 +172,7 @@ ul.notes li .content{
 }
 .newNote .customized{
     padding: 4px 10px;
-    background: #fff;
+    /*background: #fff;*/
     border-radius: 60px;
 }
 .newNote .customized span{
@@ -154,21 +181,34 @@ ul.notes li .content{
 	display: inline-block;
 	border-radius: 50%;
 	cursor: pointer;
+	vertical-align: middle;
 }
 .newNote .customized span:hover{
 	-webkit-filter: brightness(1.1);
 	filter: brightness(1.1);
 }
-.newNote .customized span:nth-child(1){
+.newNote .customized label.description{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.newNote .customized.color span:nth-child(2){
+    background: #f60;
+}
+.newNote .customized.color span:nth-child(3){
+    background: #000;
+}
+.newNote .customized.bgcolor span:nth-child(2){
     background: #cdfbcd;
 }
-.newNote .customized span:nth-child(2){
+.newNote .customized.bgcolor span:nth-child(3){
     background: #fcc;
 }
-.newNote .customized span:nth-child(3){
+.newNote .customized.bgcolor span:nth-child(4){
     background: #eee4c9;
 }
-.newNote .customized span:nth-child(4){
+.newNote .customized.bgcolor span:nth-child(5){
     background: #ffa;
 }
 .newNote .customized span.selected{
@@ -188,7 +228,7 @@ ul.notes li .content{
     background: inherit;
     text-indent: 2px;
     line-height: 28px;
-    /*color: #333;*/
+    color: inherit;
     margin: 10px 0;
 }
 .newNote .content textarea{
@@ -197,14 +237,15 @@ ul.notes li .content{
 }
 .newNote .content .create{
     display: block;
-    width: 84px;
-    height: 28px;
-    line-height: 28px;
-    font-size: 12px;
-    border-radius: 1px;
-    color: #fff;
+    /* width: 84px; */
+    /* height: 28px; */
+    font-family: consolas;
+    line-height: 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: inherit;
     text-align: center;
-    background-color: #41464b;
+    /*background-color: #fff;*/
     cursor: pointer;
 }
 .newNote .content .create:hover{
