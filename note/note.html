@@ -19,18 +19,26 @@
 			<h4>{{tips}}</h4>
 			<ul class="notes">
 	            <li v-for="item in noteList">
-	                <div v-bind:style="{background: item.background}">
+	                <div v-bind:style="{background: item.background,color: item.color}">
 	                    <span class="time">{{item.timeStamp | timeFormat}}</span>
-	                    <div class="title"><input maxlength="15" v-bind:value="item.title" type="" name=""></div>
-	                    <div class="content" contenteditable="true">{{item.content}}</div>
+	                    <div class="title">
+	                    	<input maxlength="15" v-model="item.title" v-bind:value="item.title" type="" name="">
+	                    </div>
+	                    <div class="content">
+	                    	<textarea v-model="item.content">{{item.content}}</textarea>		
+	                    </div>
 	                </div>
+	                <span v-bind:tit="item.title" v-bind:con="item.content" v-bind:color="item.color" v-bind:bgcolor="item.background" v-on:click="saveNote(item,event)" class="saveNote">save</span>
 	                <span v-on:click="deleteNote(item)" class="deleteNote"></span>
 	            </li>
             </ul>
             <span v-on:click="showNote" class="addNew" v-bind:class="{addRotate: isRotate}"></span>
-            <div class="newNote" v-bind:style="{background: noteBgColor}"  v-bind:class="{showNote: isShow}">
-            	<div v-on:click="changeBgColor" class="customized">
-            		<span color="#cdfbcd" class="selected"></span><span color="#fcc"></span><span color="#eee4c9"></span><span color="#ffa"></span>
+            <div class="newNote" v-bind:style="{background: noteBgColor,color: noteColor}"  v-bind:class="{showNote: isShow}">
+            	<div v-on:click="changeColor" class="customized color">
+            		<label class="description">文字</label><span color="#f60" class="selected"></span><span color="#000"></span><span color="#eee4c9"></span><span color="#ffa"></span>
+            	</div>
+            	<div v-on:click="changeBgColor" class="customized bgcolor">
+            		<label class="description">背景色</label><span color="#cdfbcd" class="selected"></span><span color="#fcc"></span><span color="#eee4c9"></span><span color="#ffa"></span>
             	</div>
             	<div class="content">
             		<input type="text" v-model="noteTitle" placeholder="这里是便签标题">
