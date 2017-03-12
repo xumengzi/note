@@ -21,14 +21,14 @@
 	            <li v-for="item in noteList">
 	                <div v-bind:style="{background: item.background,color: item.color}">
 	                    <span class="time">{{item.timeStamp | timeFormat}}</span>
-	                    <div class="title">
+	                    <div v-bind:style="{borderColor: item.color}" class="title">
 	                    	<input maxlength="15" v-model="item.title" v-bind:value="item.title" type="" name="">
 	                    </div>
 	                    <div class="content">
 	                    	<textarea v-model="item.content">{{item.content}}</textarea>		
 	                    </div>
 	                </div>
-	                <span v-bind:tit="item.title" v-bind:con="item.content" v-bind:color="item.color" v-bind:bgcolor="item.background" v-on:click="saveNote(item,event)" class="saveNote">save</span>
+	                <span v-bind:tit="item.title" v-bind:con="item.content" v-bind:color="item.color" v-bind:bgcolor="item.background" v-on:click="saveNote(item,event)" class="saveNote"></span>
 	                <span v-on:click="deleteNote(item)" class="deleteNote"></span>
 	            </li>
             </ul>
