@@ -1,0 +1,24 @@
+/*一些重置样式*/ 
+body{
+	padding: 0;
+	margin: 0;
+	font-family: "微软雅黑";
+}
+ul{
+	margin: 0;
+	padding: 0;
+}
+ul li{
+	list-style: none;
+	display: inline-block;
+}
+em{
+	font-style: normal;
+	display: inline-block;
+}
+i{
+	@extend em;
+}
+b{
+	@extend em;
+}

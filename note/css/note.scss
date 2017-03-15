@@ -1,0 +1,303 @@
+@import "base";
+/*定义一些基础变量*/ 
+$baseSize: 10px;
+$positionSize: 10px;
+$fontSize: 12px;
+body{
+    padding: $baseSize $baseSize* 3;
+}
+
+#myNote{
+    > h4{
+        color: #999;
+        font-weight: 400;
+    }
+    .addNew{
+        width: 30px;
+        height: 30px;
+        position: fixed;
+        top: 4px;
+        right: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        background: url(../img/add.png);
+        background-size: cover;
+        box-shadow: #e74c3c 0 0 10px;
+        transform: rotate(0);
+        transition: all ease-in-out .7s;
+        z-index: 10000;
+        cursor: pointer;
+        &:hover{
+            filter: brightness(1.2);
+        }
+    }
+    .addRotate{
+        transform: rotate(360deg);
+    }
+}
+ul.notes{
+    position: relative;
+    li{
+        position: relative;
+        margin: $baseSize $baseSize * 5 $baseSize * 5 0;
+        box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 60px rgba(0,0,0,0.3) inset;
+        &::before{
+            content:"";
+            position:absolute;
+            width: 93%;
+            height: 89%;
+            left: 7px;
+            bottom: 15px;
+            background-color:transparent;
+            box-shadow:0 5px 20px rgba(0,0,0,0.7);
+            transform:skew(-10deg)rotate(-7deg);
+            z-index:-1;
+        }
+        &::after{
+            content:"";
+            position:absolute;
+            width: 94%;
+            height: 89%;
+            left: 7px;
+            bottom: 14px;
+            background-color:transparent;
+            box-shadow:0 5px 20px rgba(0,0,0,0.7);
+            transform:skew(10deg)rotate(7deg); 
+            z-index:-2;
+        }
+        &:hover{
+            .deleteNote{
+                display: block;
+            }
+            .saveNote{
+                display: block;
+            }
+        }
+        &:nth-child(2n+1){
+            transform: rotate(10deg);
+        }
+        &:nth-child(3n+1){
+            transform: rotate(-8deg);
+        }
+        &:nth-child(5n+1){
+            transform: rotate(-15deg);
+        }
+        > div{
+            height: 210px;
+            width: 210px;
+            text-decoration: none;
+            color: #000;
+            background: #ffc;
+            padding: 1em;
+            border: 2px solid #fff;
+            &:nth-child(2n+1){
+                background: #ffc;
+            }
+            &:nth-child(3n+1){
+                background: #fcc;
+            }
+            &:nth-child(5n+1){
+                background: #ffa;
+            }
+            span.time{
+                position: absolute;
+                top: $positionSize / 2;
+                right: $positionSize / 2;
+                font-size: $fontSize - 2px;
+            }
+            P{
+                font-size: $fontSize;
+            }
+        }
+        h4{
+            margin-top: $baseSize * 2;
+            font-size: $fontSize * 4 / 3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        input{
+            display: block;
+            width: 100%;
+            height: 28px;
+            background: inherit;
+            text-indent: 2px;
+            line-height: 28px;
+            color: inherit;
+            margin: 10px 0;
+            outline: none;
+            border: none;
+            box-shadow: none;
+            font-family: "consolas";
+            font-weight: 700;
+        }
+        .deleteNote{
+            width: $baseSize * 2;
+            height: $baseSize * 2;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            display: none;
+            background: url(../img/trash2.png);
+            background-size:cover;
+            cursor: pointer;
+        }
+        .saveNote{
+            width: 18px;
+            height: 16px;
+            display: inline-block;
+            position: absolute;
+            left: 4px;
+            bottom: 4px;
+            display: none;
+            background: url(../img/save.png);
+            background-size: 100% 100%;
+            cursor: pointer;
+        }
+        .title{
+            border-bottom: 1px rgba(245, 4, 4, 0.25) solid;
+            opacity: .9;
+        }
+        .content{
+            height: 160px;
+            overflow: auto;
+            outline: none;
+            textarea{
+                height: 100%;
+                resize: none;
+                outline: none;
+                border: none; 
+                box-shadow: none;
+                display: block;
+                width: 100%;
+                /* height: 28px; */
+                box-sizing: border-box;
+                background: inherit;
+                text-indent: 2px;
+                line-height: 28px;
+                font-family: consolas;
+                font-weight: 700;
+                color: inherit;
+            }
+        }
+    }
+}
+.newNote{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    transform: translateX(100%);
+    background: #ffa;
+    box-shadow: 1px 1px 10px #ccc;
+    transition: .7s ease-in-out;
+    z-index: 9999;
+    .customized{
+        padding: 4px 10px;
+        border-radius: 60px;
+        span{
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            border-radius: 50%;
+            cursor: pointer;
+            vertical-align: middle;
+            &:hover{
+                filter: brightness(1.1);
+            }
+        }
+        label.description{
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+    }
+    .customized.color{
+        span{
+            &:nth-child(2){
+                background: #f60;
+            }
+            &:nth-child(3){
+                background: #000;
+            }
+        }
+    }
+    .customized.bgcolor{
+        span{
+            &:nth-child(2){
+                background: #cdfbcd;
+            }
+            &:nth-child(3){
+                background: #fcc;
+            }
+            &:nth-child(4){
+                background: #eee4c9;
+            }
+            &:nth-child(5){
+                background: #ffa;
+            }
+        }
+    }
+    .content{
+        padding:10px;
+        input{
+            outline: none;
+            border: none;
+            box-shadow: none;
+            display: block;
+            width: 100%;
+            height: 28px;
+            box-sizing: border-box;
+            background: inherit;
+            text-indent: 2px;
+            line-height: 28px;
+            color: inherit;
+            margin: 10px 0;
+        }
+        textarea{
+            @extend input;
+            height: 150px;
+            resize: none;
+        }
+        .create{
+            display: block;
+            font-family: consolas;
+            line-height: 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            color: inherit;
+            text-align: center;
+            cursor: pointer;
+            &:hover{
+                box-shadow: 0 2px 6px 0 rgba(0,0,0,.2);
+            }
+        }
+    }
+}
+.showNote{
+    transform: translateX(0);
+}
+
+::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track-piece
+{
+    background-color: #ccc;
+    -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical
+{
+    height: 5px;
+    background-color: #999;
+    -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:horizontal
+{
+    width: 5px;
+    background-color: #ccc;
+    -webkit-border-radius: 6px;
+}

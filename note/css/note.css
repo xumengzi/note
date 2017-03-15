@@ -1,322 +1,335 @@
-body{
-	padding: 10px 30px;
-	margin: 0;
-}
-ul{
-	padding: 0;
-	margin: 0;
-}
-ul li{
-	list-style: none;
+@charset "UTF-8";
+/*一些重置样式*/
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "微软雅黑";
 }
 
-#myNote > h4{
-	color: #999;
-	font-weight: 400;
-}
-ul.notes{
-	position: relative;
-}
-ul.notes li{
-	position: relative;
-	display: inline-block;
-    margin: 10px 50px 50px 0;
-    box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 60px rgba(0,0,0,0.3) inset;
-	-webkit-box-shadow:0 1px 4px rgba(0,0,0,0.3),0 0 60px rgba(0,0,0,0.3) inset;
-}
-ul.notes li:before{
-	content:"";
-	position:absolute;
-	z-index:-1;
-	width: 93%;
-    height: 89%;
-    left: 7px;
-    bottom: 15px;
-	background-color:transparent;
-	box-shadow:0 5px 20px rgba(0,0,0,0.7);
-	-webkit-box-shadow:0 5px 20px rgba(0,0,0,0.7);
-	transform:skew(-10deg)rotate(-7deg); 
-	-webkit-transform:skew(-10deg)rotate(-7deg); 
+ul {
+  margin: 0;
+  padding: 0;
 }
 
-ul.notes li:after{
-	content:"";
-	position:absolute;
-	z-index:-2;
-	width: 94%;
-    height: 89%;
-    left: 7px;
-    bottom: 14px;
-	background-color:transparent;
-	box-shadow:0 5px 20px rgba(0,0,0,0.7);
-	-webkit-box-shadow:0 5px 20px rgba(0,0,0,0.7);
-	transform:skew(10deg)rotate(7deg); 	
-	-webkit-transform:skew(10deg)rotate(7deg); 	
+ul li {
+  list-style: none;
+  display: inline-block;
 }
 
-ul.notes li:nth-child(2n+1){
-	transform: rotate(10deg);
+em, i, b {
+  font-style: normal;
+  display: inline-block;
 }
-ul.notes li:nth-child(3n+1){
-	transform: rotate(-8deg);
+
+/*定义一些基础变量*/
+body {
+  padding: 10px 30px;
 }
-ul.notes li:nth-child(5n+1){
-	transform: rotate(-15deg);
+
+#myNote > h4 {
+  color: #999;
+  font-weight: 400;
+}
+#myNote .addNew {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 4px;
+  right: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background: url(../img/add.png);
+  background-size: cover;
+  box-shadow: #e74c3c 0 0 10px;
+  -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+          transform: rotate(0);
+  -webkit-transition: all ease-in-out .7s;
+          transition: all ease-in-out .7s;
+  z-index: 10000;
+  cursor: pointer;
+}
+#myNote .addNew:hover {
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
+}
+#myNote .addRotate {
+  -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+ul.notes {
+  position: relative;
+}
+ul.notes li {
+  position: relative;
+  margin: 10px 50px 50px 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.3) inset;
+}
+ul.notes li::before {
+  content: "";
+  position: absolute;
+  width: 93%;
+  height: 89%;
+  left: 7px;
+  bottom: 15px;
+  background-color: transparent;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+  -webkit-transform: skew(-10deg) rotate(-7deg);
+      -ms-transform: skew(-10deg) rotate(-7deg);
+          transform: skew(-10deg) rotate(-7deg);
+  z-index: -1;
+}
+ul.notes li::after {
+  content: "";
+  position: absolute;
+  width: 94%;
+  height: 89%;
+  left: 7px;
+  bottom: 14px;
+  background-color: transparent;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+  -webkit-transform: skew(10deg) rotate(7deg);
+      -ms-transform: skew(10deg) rotate(7deg);
+          transform: skew(10deg) rotate(7deg);
+  z-index: -2;
+}
+ul.notes li:hover .deleteNote {
+  display: block;
+}
+ul.notes li:hover .saveNote {
+  display: block;
+}
+ul.notes li:nth-child(2n+1) {
+  -webkit-transform: rotate(10deg);
+      -ms-transform: rotate(10deg);
+          transform: rotate(10deg);
+}
+ul.notes li:nth-child(3n+1) {
+  -webkit-transform: rotate(-8deg);
+      -ms-transform: rotate(-8deg);
+          transform: rotate(-8deg);
+}
+ul.notes li:nth-child(5n+1) {
+  -webkit-transform: rotate(-15deg);
+      -ms-transform: rotate(-15deg);
+          transform: rotate(-15deg);
 }
 ul.notes li > div {
-	display: block;
-    height: 210px;
-    width: 210px;
-    text-decoration: none;
-    color: #000;
-    background: #ffc;
-    padding: 1em;
-    border: 2px solid #fff;
+  height: 210px;
+  width: 210px;
+  text-decoration: none;
+  color: #000;
+  background: #ffc;
+  padding: 1em;
+  border: 2px solid #fff;
 }
-ul.notes li > div:nth-child(2n+1){
-	background: #ffc;
+ul.notes li > div:nth-child(2n+1) {
+  background: #ffc;
 }
-ul.notes li > div:nth-child(3n+1){
-	background: #fcc;
+ul.notes li > div:nth-child(3n+1) {
+  background: #fcc;
 }
-ul.notes li > div:nth-child(5n+1){
-	background: #ffa;
+ul.notes li > div:nth-child(5n+1) {
+  background: #ffa;
 }
 ul.notes li > div span.time {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 10px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 10px;
+}
+ul.notes li > div P {
+  font-size: 12px;
 }
 ul.notes li h4 {
-    margin-top: 20px;
-    font-size: 16px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  margin-top: 20px;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-ul.notes li > div p {
-    font-size: 12px;
+ul.notes li input, ul.notes li .newNote .content textarea, .newNote .content ul.notes li textarea {
+  display: block;
+  width: 100%;
+  height: 28px;
+  background: inherit;
+  text-indent: 2px;
+  line-height: 28px;
+  color: inherit;
+  margin: 10px 0;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-family: "consolas";
+  font-weight: 700;
 }
-ul.notes li input{
-    display: block;
-    width: 100%;
-    height: 28px;
-    background: inherit;
-    text-indent: 2px;
-    line-height: 28px;
-    color: inherit;
-    margin: 10px 0;
-    outline: none;
-    border: none;
-    box-shadow: none;
-    font-family: "consolas";
-    font-weight: 700;
+ul.notes li .deleteNote {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background: url(../img/trash2.png);
+  background-size: cover;
+  cursor: pointer;
 }
-ul.notes li .deleteNote{
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: none;
-	background: url(../img/trash2.png);
-	background-size:cover;
-	cursor: pointer;
+ul.notes li .saveNote {
+  width: 18px;
+  height: 16px;
+  display: inline-block;
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  display: none;
+  background: url(../img/save.png);
+  background-size: 100% 100%;
+  cursor: pointer;
 }
-ul.notes li:hover .deleteNote,ul.notes li:hover .saveNote{
-	display: block;
+ul.notes li .title {
+  border-bottom: 1px rgba(245, 4, 4, 0.25) solid;
+  opacity: .9;
 }
-ul.notes li .saveNote{
-    width: 18px;
-    height: 16px;
-    display: inline-block;
-    position: absolute;
-    left: 4px;
-    bottom: 4px;
-    display: none;
-    background: url(../img/save.png);
-    background-size: 100% 100%;
-    cursor: pointer;
+ul.notes li .content {
+  height: 160px;
+  overflow: auto;
+  outline: none;
 }
-ul.notes li .title{
-	border-bottom: 1px rgba(245, 4, 4, 0.25) solid;
-	opacity: .9;
-}
-ul.notes li .content{
-    height: 160px;
-    overflow: auto;
-    outline: none;
-}
-ul.notes li .content textarea{
-    height: 100%;
-    resize: none;
-    outline: none;
-    border: none; 
-    box-shadow: none;
-    display: block;
-    width: 100%;
-    /* height: 28px; */
-    box-sizing: border-box;
-    background: inherit;
-    text-indent: 2px;
-    line-height: 28px;
-    font-family: consolas;
-    font-weight: 700;
-    color: inherit;
-    /* margin: 10px 0; */
+ul.notes li .content textarea {
+  height: 100%;
+  resize: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  display: block;
+  width: 100%;
+  /* height: 28px; */
+  box-sizing: border-box;
+  background: inherit;
+  text-indent: 2px;
+  line-height: 28px;
+  font-family: consolas;
+  font-weight: 700;
+  color: inherit;
 }
 
-#myNote .addNew{
-    width: 30px;
-    height: 30px;
-    position: fixed;
-    top: 4px;
-    right: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    background: url(../img/add.png);
-    background-size: cover;
-    box-shadow: #e74c3c 0 0 10px;
-    -webkit-transform: rotate(0);
-    -webkit-transition: all ease-in-out .7s;
-    z-index: 10000;
-    cursor: pointer;
+.newNote {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%);
+  background: #ffa;
+  box-shadow: 1px 1px 10px #ccc;
+  -webkit-transition: .7s ease-in-out;
+          transition: .7s ease-in-out;
+  z-index: 9999;
 }
-#myNote .addRotate{
-	transform: rotate(360deg);
+.newNote .customized {
+  padding: 4px 10px;
+  border-radius: 60px;
 }
-#myNote .addNew:hover{
-    -webkit-filter: brightness(1.2);
-    filter: brightness(1.2);
+.newNote .customized span {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 50%;
+  cursor: pointer;
+  vertical-align: middle;
 }
-
-.newNote{
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 250px;
-	transform: translateX(100%);
-	/*height: 250px;*/
-	background: #ffa;
-	box-shadow: 1px 1px 10px #ccc;
-	transition: .7s ease-in-out;
-	z-index: 9999;
+.newNote .customized span:hover {
+  -webkit-filter: brightness(1.1);
+          filter: brightness(1.1);
 }
-.showNote{
-	transform: translateX(0);
+.newNote .customized label.description {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
 }
-.newNote .customized{
-    padding: 4px 10px;
-    /*background: #fff;*/
-    border-radius: 60px;
+.newNote .customized.color span:nth-child(2) {
+  background: #f60;
 }
-.newNote .customized span{
-	width: 30px;
-	height: 30px;
-	display: inline-block;
-	border-radius: 50%;
-	cursor: pointer;
-	vertical-align: middle;
+.newNote .customized.color span:nth-child(3) {
+  background: #000;
 }
-.newNote .customized span:hover{
-	-webkit-filter: brightness(1.1);
-	filter: brightness(1.1);
+.newNote .customized.bgcolor span:nth-child(2) {
+  background: #cdfbcd;
 }
-.newNote .customized label.description{
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
+.newNote .customized.bgcolor span:nth-child(3) {
+  background: #fcc;
 }
-
-.newNote .customized.color span:nth-child(2){
-    background: #f60;
+.newNote .customized.bgcolor span:nth-child(4) {
+  background: #eee4c9;
 }
-.newNote .customized.color span:nth-child(3){
-    background: #000;
+.newNote .customized.bgcolor span:nth-child(5) {
+  background: #ffa;
 }
-.newNote .customized.bgcolor span:nth-child(2){
-    background: #cdfbcd;
+.newNote .content {
+  padding: 10px;
 }
-.newNote .customized.bgcolor span:nth-child(3){
-    background: #fcc;
+.newNote .content input, .newNote .content textarea {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  box-sizing: border-box;
+  background: inherit;
+  text-indent: 2px;
+  line-height: 28px;
+  color: inherit;
+  margin: 10px 0;
 }
-.newNote .customized.bgcolor span:nth-child(4){
-    background: #eee4c9;
+.newNote .content textarea {
+  height: 150px;
+  resize: none;
 }
-.newNote .customized.bgcolor span:nth-child(5){
-    background: #ffa;
+.newNote .content .create {
+  display: block;
+  font-family: consolas;
+  line-height: 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
 }
-.newNote .customized span.selected{
-	
-}
-.newNote .content{
-	padding:10px;
-}
-.newNote .content input,.newNote .content textarea{
-    outline: none;
-    border: none;
-    box-shadow: none;
-    display: block;
-    width: 100%;
-    height: 28px;
-    box-sizing: border-box;
-    background: inherit;
-    text-indent: 2px;
-    line-height: 28px;
-    color: inherit;
-    margin: 10px 0;
-}
-.newNote .content textarea{
-	height: 150px;
-    resize: none;
-}
-.newNote .content .create{
-    display: block;
-    /* width: 84px; */
-    /* height: 28px; */
-    font-family: consolas;
-    line-height: 30px;
-    font-size: 16px;
-    border-radius: 8px;
-    color: inherit;
-    text-align: center;
-    /*background-color: #fff;*/
-    cursor: pointer;
-}
-.newNote .content .create:hover{
-	-ms-box-shadow: 0 2px 6px 0 rgba(0,0,0,.2);
-    -o-box-shadow: 0 2px 6px 0 rgba(0,0,0,.2);
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,.2);
+.newNote .content .create:hover {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
-
-/*input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-	background: #41464b;
-}*/
-
-
-
-::-webkit-scrollbar
-{
-    width: 6px;
-    height: 6px;
+.showNote {
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
 }
-::-webkit-scrollbar-track-piece
-{
-    background-color: #CCCCCC;
-    -webkit-border-radius: 6px;
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-::-webkit-scrollbar-thumb:vertical
-{
-    height: 5px;
-    background-color: #999999;
-    -webkit-border-radius: 6px;
+
+::-webkit-scrollbar-track-piece {
+  background-color: #ccc;
+  -webkit-border-radius: 6px;
 }
-::-webkit-scrollbar-thumb:horizontal
-{
-    width: 5px;
-    background-color: #CCCCCC;
-    -webkit-border-radius: 6px;
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  background-color: #999;
+  -webkit-border-radius: 6px;
 }
+
+::-webkit-scrollbar-thumb:horizontal {
+  width: 5px;
+  background-color: #ccc;
+  -webkit-border-radius: 6px;
+}
+
+/*# sourceMappingURL=note.css.map */
