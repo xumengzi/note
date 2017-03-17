@@ -160,7 +160,7 @@ ul.notes{
             opacity: .9;
         }
         .content{
-            height: 160px;
+            height: $baseSize * 16;
             overflow: auto;
             outline: none;
             textarea{
@@ -187,7 +187,7 @@ ul.notes{
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
+    width: $baseSize * 25;
     transform: translateX(100%);
     background: #ffa;
     box-shadow: 1px 1px 10px #ccc;
@@ -197,8 +197,8 @@ ul.notes{
         padding: 4px 10px;
         border-radius: 60px;
         span{
-            width: 30px;
-            height: 30px;
+            width: $baseSize * 3;
+            height: $baseSize * 3;
             display: inline-block;
             border-radius: 50%;
             cursor: pointer;
@@ -210,7 +210,7 @@ ul.notes{
         label.description{
             display: inline-block;
             vertical-align: middle;
-            margin-right: 10px;
+            margin-right: $positionSize;
         }
     }
     .customized.color{
@@ -240,7 +240,7 @@ ul.notes{
         }
     }
     .content{
-        padding:10px;
+        padding: $positionSize;
         input{
             outline: none;
             border: none;
@@ -253,18 +253,18 @@ ul.notes{
             text-indent: 2px;
             line-height: 28px;
             color: inherit;
-            margin: 10px 0;
+            margin: $baseSize 0;
         }
         textarea{
             @extend input;
-            height: 150px;
+            height: $baseSize * 15;
             resize: none;
         }
         .create{
             display: block;
             font-family: consolas;
-            line-height: 30px;
-            font-size: 16px;
+            line-height: $baseSize * 3;
+            font-size: $fontSize * 4 / 3;
             border-radius: 8px;
             color: inherit;
             text-align: center;
@@ -281,8 +281,8 @@ ul.notes{
 
 ::-webkit-scrollbar
 {
-    width: 6px;
-    height: 6px;
+    width: $baseSize;
+    height: $baseSize;
 }
 ::-webkit-scrollbar-track-piece
 {
